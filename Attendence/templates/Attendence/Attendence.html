@@ -1,0 +1,63 @@
+{% extends 'Attendence/base_page.html' %}
+{% load crispy_forms_tags %}
+{% crispy form %}
+
+{% block content %}
+
+<head>
+  <title>World</title>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+
+<body>
+<div>
+    <div class="alert alert-info">
+        <strong><h3>{{Heading}}</h3></strong>
+      </div>
+    <form action="" , method="post" , class="bootstrap4">
+        {% csrf_token %}
+        {{form | crispy}}
+        <input type="submit" value="submit">
+    </form>
+</div>
+  
+  <h1>{{title}}</h1>
+  <br>
+  <table>
+    <tr>
+      <th>Sr.No.</th>
+      <th>Roll No</th>
+      <th>Name</th>
+      <th>Subject Name</th>
+      <th>Ip Address</th>
+      <th>Date</th>
+    </tr>
+    {% for each in data %}
+    <tr>
+      <td>{{ forloop.counter}}</td>
+      <td>{{ each.ID.st_id}}</td>
+      <td>{{ each.ID.st_name }}</td>
+      <td>{{ each.subject_name }}</td>
+      <td>{{ each.ip_address }}</td>
+      <td>{{ each.date1 }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endblock content %}

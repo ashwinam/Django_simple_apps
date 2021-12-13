@@ -1,0 +1,19 @@
+{% extends 'Attendence/base_page.html' %}
+<!-- {% load tailwind_filters %} #use for crispy tailwind -->
+{% load crispy_forms_tags %}
+{% crispy form %}
+
+{% block content%}
+<div>
+    <div class="alert alert-info">
+        <strong><h3>{{Heading}}</h3></strong>
+      </div>
+    <form action="" , method="post" , class="bootstrap4">
+        {% csrf_token %}
+        {{form | crispy}}
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+
+{% endblock content %}

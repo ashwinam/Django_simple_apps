@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'JS/jquery.min.js' %}"></script>
+    <script src="{% static 'JS/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">WebSiteName</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li ><a href="{% url 'attHome'%}">Home</a></li>
+                <li><a href="{% url 'masterForm'%}">MasterForm</a></li>
+                <li><a href="{% url 'attendenceForm'%}">Attendence</a></li>
+                <li><a href="{% url 'attendencesheet'%}">Attendencesheet</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="fa fa-user"></i> Sign Up</a></li>
+                <li><a href="#"><i class="fa fa-spinner fa-pulse"></i> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        <h4>{{message}}</h4>
+    </div>
+      {% endfor %}
+      {% endif %}
+    {% block content%}
+    <div class="container">
+        <h3>Right Aligned Navbar</h3>
+        <p>Hello World</p>
+    </div>
+    {% endblock content%}
+
+</body>
+
+</html>

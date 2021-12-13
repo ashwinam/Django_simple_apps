@@ -1,0 +1,68 @@
+{% extends 'Attendence/base_page.html' %}
+
+{% block content %}
+
+<head>
+  <title>World</title>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+
+<body>
+  {% if data1 %}
+  <h1>{{title}}</h1>
+  <br>
+  <table>
+    <tr>
+      <th>Sr.No.</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Class</th>
+    </tr>
+    {% for each in data1 %}
+    <tr>
+      <td>{{ each.st_id}}</td>
+      <td>{{ each.st_name | upper}}</td>
+      <td>{{ each.st_mail }}</td>
+      <td>{{ each.st_class }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <!-- This is for /atten/disp  endpoint -->
+  {% else %}
+  <h1>{{title}}</h1>
+  <br>
+  <table>
+    <tr>
+      <th>Sr.No.</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone Number</th>
+    </tr>
+    {% for each in data %}
+    <tr>
+      <td>{{ forloop.counter}}</td>
+      <td>{{ each.Name | upper}}</td>
+      <td>{{ each.Addr }}</td>
+      <td>{{ each.phone_nm }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+  {% endblock content %}
