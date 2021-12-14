@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_tailwind',
 
-    'Attendence.apps.AttendenceConfig'
+    'Attendence.apps.AttendenceConfig',
+    'Users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 # CRISPY_TEMPLATE_PACK = 'tailwind'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+LOGIN_REDIRECT_URL = 'profile'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

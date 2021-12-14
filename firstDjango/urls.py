@@ -16,9 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from Attendence import views as attView
+from django.contrib.auth import views as auth_views
+from Users import views as userView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', attView.home, name='attHome'),
-    path('atten/', include('Attendence.urls'))
+    path('atten/', include('Attendence.urls')),
+    # path('Login/',auth_views.LoginView.as_view(template_name = 'Users/login.html'),name='login'),
+    path('Login',userView.loginPage, name='login'),
+    path('profile/',userView.profile, name='profile'),
+    path('Logout/',auth_views.LogoutView.as_view(template_name = 'Users/logout.html'),name='logout'),
+    path('user/',include('Users.urls'))
+
 ]
+urlpatterns = urlpatterns+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .models import MasterData, Student, Mark_Attendence
 from .forms import StudentForm, StudentModelForm, MasterDataForm, MarkAttendenceForm, oneForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 import time
 
 from Attendence import forms
@@ -68,6 +69,7 @@ def studentModelForm(request):
             messages.warning(request,"Error! Error! Error!")
     return render (request, 'Attendence/student_form.html',context)
 
+@login_required(login_url='login')
 def masterDataForm(request):
     form = MasterDataForm()
     context = {'form':form, 'Heading': 'Enter Student Details'}
@@ -86,6 +88,7 @@ def epochToHuman(tm):
     currTime = time.localtime(tm)
     return time.strftime("%d-%m-%Y-%H", currTime)
 
+@login_required(login_url='login')
 def markAttendenceForm(request):
     form = MarkAttendenceForm()
     context = {'form': form, 'Heading': 'Mark Your Attendence'}
@@ -105,6 +108,7 @@ def markAttendenceForm(request):
 
     return render(request, 'Attendence/student_form.html',context)
 
+@login_required(login_url='login')
 def markAttendence(request):
     posts = Mark_Attendence.objects.all()
     context = {'title':'Attendence Sheet', 'data':posts}
