@@ -1,0 +1,19 @@
+{% extends 'Attendence/base_page.html' %}
+<!-- {% load tailwind_filters %} #use for crispy tailwind -->
+{% load crispy_forms_tags %}
+{% crispy form %}
+
+{% block content%}
+<div class="container">
+    {% for each_post in posts %}
+    <div class="alert alert-info">
+        <strong><h2>{{each_post.title}}</h2></strong>
+    </div>
+    <h3>{{each_post.content}}</h3>
+    <hr>
+    <h4>by {{each_post.author}} on {{each_post.date1}}</h4>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}

@@ -1,13 +1,23 @@
 {% extends 'Attendence/base_page.html' %}
 {% load static %}
 {% block content%}
-<div>
+<div class="container">
     <div class="alert alert-info">
         <strong><h3>{{user.username}}</h3></strong>
       </div>
     <h1>Hello {{user.username}}</h1>
-    <!-- <img src="{{user.profile.image.url}}" class="rounded-circle" alt="{{user.username}}"> -->
-    <img src="{{user.profile.image.url}}" class="img-circle" alt="{{user.username}}" width="304" height="236">
+
+    <img src="{{user.profile.image.url}}" class="img-circle" alt="{{user.username}}" width="150" height="150">
+    <div>
+      <br>
+    {{user.email}}
+  </div>
+  <div>
+    <a href="{% url 'up_form' %}">Update Profile</a>
+  </div>
+  <div>
+    <a href="{% url 'updatepass' %}">Update Password</a>
+  </div>
 </div>
 
 
