@@ -18,6 +18,7 @@ from django.urls import path, include
 from Attendence import views as attView
 from django.contrib.auth import views as auth_views
 from Users import views as userView
+from blog import views as blogViews
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -29,7 +30,14 @@ urlpatterns = [
     path('Login',userView.loginPage, name='login'),
     path('profile/',userView.profile, name='profile'),
     path('Logout/',auth_views.LogoutView.as_view(template_name = 'Users/logout.html'),name='logout'),
-    path('user/',include('Users.urls'))
+    path('user/',include('Users.urls')),
+    path('password_reset/',auth_views.PasswordResetView.as_view(template_name = 'Users/password_reset.html'), name = 'password_reset'),
+    path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name = 'Users/password_reset_done.html'), name = 'password_reset_done'),
+    path('password_reset/confirm/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name = 'Users/password_reset_confirm.html'), name = 'password_reset_confirm'),
+    path('password_reset/complete/',auth_views.PasswordResetCompleteView.as_view(template_name = 'Users/password_reset_complete.html'), name = 'password_reset_complete'),
+    path('blog/', include('blog.urls')),
+
+
 
 ]
 urlpatterns = urlpatterns+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
